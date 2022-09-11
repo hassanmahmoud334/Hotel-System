@@ -1,3 +1,6 @@
+
+import javax.swing.JOptionPane;
+import project.InsertUpdateDelete;
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -95,6 +98,11 @@ public class Signup extends javax.swing.JFrame {
         jButton2.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("Signup");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 540, -1, -1));
 
         jButton3.setBackground(new java.awt.Color(0, 51, 51));
@@ -134,8 +142,27 @@ public class Signup extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-System.exit(0);        // TODO add your handling code here:
+int a =JOptionPane.showConfirmDialog(null, "Do you realy want to close Application","Select",JOptionPane.YES_NO_OPTION);       
+if(a==0)System.exit(0);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+            String name = jTextField1.getText();
+            String email = jTextField2.getText();
+            String password = jPasswordField1.getText();
+            String securityQuestion =(String) jComboBox1.getSelectedItem();
+            String answer = jTextField3.getText();
+            String address = jTextField4.getText();
+        if(name.equals("")||email.equals("")||password.equals("")||answer.equals("")||address.equals(""))
+            JOptionPane.showMessageDialog(null, "Every Field is Required");
+        else{
+            String Query;
+            Query = "insert into users values('"+name+"','"+email+"','"+password+"','"+securityQuestion+"','"+answer+"','"+address+"','false')";
+            InsertUpdateDelete.setData(Query, "Registered Successfully");
+            setVisible(false);
+            new Signup().setVisible(true);
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
