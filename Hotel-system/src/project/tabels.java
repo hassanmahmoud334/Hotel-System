@@ -20,7 +20,7 @@ public class tabels {
 
             try {
                 con.close();
-                st.close();
+                 st.close();
             } catch (Exception e) {
             }
         }
