@@ -1,5 +1,8 @@
 
 import javax.swing.JOptionPane;
+import java.sql.*;
+import project.ConnectionProvider;
+import project.Select;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -56,7 +59,11 @@ public class Login extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Password");
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 411, -1, 30));
+
+        jTextField1.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
         getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 350, 382, -1));
+
+        jPasswordField1.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
         getContentPane().add(jPasswordField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 410, 382, -1));
 
         jButton1.setBackground(new java.awt.Color(0, 51, 51));
@@ -74,12 +81,22 @@ public class Login extends javax.swing.JFrame {
         jButton2.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("Signup");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 460, -1, -1));
 
         jButton3.setBackground(new java.awt.Color(0, 51, 51));
         jButton3.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
         jButton3.setForeground(new java.awt.Color(255, 255, 255));
         jButton3.setText("Forget Password ?");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 460, -1, -1));
 
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/close.png"))); // NOI18N
@@ -88,7 +105,7 @@ public class Login extends javax.swing.JFrame {
                 jButton4ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(1320, 10, 30, -1));
+        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(1310, 10, 40, -1));
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/login.PNG"))); // NOI18N
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -107,10 +124,41 @@ public class Login extends javax.swing.JFrame {
         String password = jPasswordField1.getText();
         if (email.equals("") || password.equals("")) {
             check = 1;
-            JOptionPane.showMessageDialog(null, "Every Field is Required");
+            JOptionPane.showMessageDialog(this, "Every Field is Required");
 
+        } else if (email.equals("Hassan") && password.equals("admin")) {
+            check = 1;
+            setVisible(false);
+            new adminHome().setVisible(true);
+        } else {
+            ResultSet rs = Select.getData("select * from users where email='" + email + "' and password = '" + password + "'");
+            try {
+                if (rs.next()) {
+                    check = 1;
+                    if (rs.getString(7).equals("true")) {
+                        setVisible(false);
+                        new home().setVisible(true);
+                    } else {
+                        JOptionPane.showMessageDialog(this, "Wait for Admin Approval");
+                    }
+
+                }
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, e);
+            }
+        }
+        if (check == 0) {
+            JOptionPane.showMessageDialog(this, "Incorrect Email or Password");
         }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        setVisible(false);
+        new Signup().setVisible(true);    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        setVisible(false);
+        new ForgetPassword().setVisible(true);    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments

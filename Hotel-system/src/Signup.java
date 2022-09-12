@@ -1,6 +1,7 @@
 
 import javax.swing.JOptionPane;
 import project.InsertUpdateDelete;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -48,6 +49,7 @@ public class Signup extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
@@ -109,23 +111,42 @@ public class Signup extends javax.swing.JFrame {
         jButton3.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
         jButton3.setForeground(new java.awt.Color(255, 255, 255));
         jButton3.setText("Login");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 540, -1, -1));
 
         jButton4.setBackground(new java.awt.Color(0, 51, 51));
         jButton4.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
         jButton4.setForeground(new java.awt.Color(255, 255, 255));
         jButton4.setText("Forget Password ?");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 540, -1, -1));
 
+        jTextField1.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField1ActionPerformed(evt);
             }
         });
         getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 210, 360, -1));
+
+        jTextField2.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
         getContentPane().add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 270, 360, -1));
+
+        jPasswordField1.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
         getContentPane().add(jPasswordField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 330, 360, -1));
+
+        jTextField3.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
         getContentPane().add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 440, 360, -1));
+
+        jTextField4.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
         getContentPane().add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 490, 360, -1));
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "what is the name of your first pet?", "what color is your first car?", "what is your primary school name?", "what is the name of the town where you were born? " }));
@@ -142,27 +163,36 @@ public class Signup extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-int a =JOptionPane.showConfirmDialog(null, "Do you realy want to close Application","Select",JOptionPane.YES_NO_OPTION);       
-if(a==0)System.exit(0);
+        int a = JOptionPane.showConfirmDialog(null, "Do you realy want to close Application", "Select", JOptionPane.YES_NO_OPTION);
+        if (a == 0)
+            System.exit(0);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-            String name = jTextField1.getText();
-            String email = jTextField2.getText();
-            String password = jPasswordField1.getText();
-            String securityQuestion =(String) jComboBox1.getSelectedItem();
-            String answer = jTextField3.getText();
-            String address = jTextField4.getText();
-        if(name.equals("")||email.equals("")||password.equals("")||answer.equals("")||address.equals(""))
+        String name = jTextField1.getText();
+        String email = jTextField2.getText();
+        String password = jPasswordField1.getText();
+        String securityQuestion = (String) jComboBox1.getSelectedItem();
+        String answer = jTextField3.getText();
+        String address = jTextField4.getText();
+        if (name.equals("") || email.equals("") || password.equals("") || answer.equals("") || address.equals(""))
             JOptionPane.showMessageDialog(null, "Every Field is Required");
-        else{
+        else {
             String Query;
-            Query = "insert into users values('"+name+"','"+email+"','"+password+"','"+securityQuestion+"','"+answer+"','"+address+"','false')";
+            Query = "insert into users values('" + name + "','" + email + "','" + password + "','" + securityQuestion + "','" + answer + "','" + address + "','false')";
             InsertUpdateDelete.setData(Query, "Registered Successfully");
             setVisible(false);
             new Signup().setVisible(true);
         }
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        setVisible(false);
+        new Login().setVisible(true);    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        setVisible(false);
+        new ForgetPassword().setVisible(true);    }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
      * @param args the command line arguments
