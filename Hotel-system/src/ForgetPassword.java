@@ -141,6 +141,7 @@ public class ForgetPassword extends javax.swing.JFrame {
         getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -154,7 +155,7 @@ public class ForgetPassword extends javax.swing.JFrame {
         email = jTextField1.getText();
         if (email.equals("")) {
             check = 1;
-            JOptionPane.showMessageDialog(this, "Email Field is Required");
+            JOptionPane.showMessageDialog(this, "Email Field is Required ");
         } else {
             ResultSet rs = Select.getData("select * from users where email='" + email + "'");
             try {
