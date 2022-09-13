@@ -95,23 +95,51 @@ public class home extends javax.swing.JFrame {
         jButton6.setForeground(new java.awt.Color(102, 0, 0));
         jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/exit.png"))); // NOI18N
         jButton6.setText("Exit");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(1220, 20, -1, -1));
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 220, -1, -1));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/home.png"))); // NOI18N
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -180, 1440, 1050));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -140, 1440, 1050));
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
+boolean m_room_exists=false;
+manageRoom m_room;
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        
-        new manageRoom().setVisible(true);
-    }//GEN-LAST:event_jButton1ActionPerformed
+  
+        // if the window dosnt exist --> create it 
+   if (!m_room_exists){
+    m_room = new manageRoom();
+    m_room.setVisible(true);
+    m_room.setDefaultCloseOperation(m_room.DISPOSE_ON_CLOSE); 
+    m_room_exists=true;
+    return ;
+     }
+   //  if exists just show it 
+   m_room.setVisible(true);
 
+    }//GEN-LAST:event_jButton1ActionPerformed
+boolean CheckIn_exists=false;
+CustomerCheckIn CheckIn;
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        new CustomerCheckIn().setVisible(true);
+
+        // if the window dosnt exist --> create it 
+   if (!CheckIn_exists){
+    CheckIn = new CustomerCheckIn();
+    CheckIn.setVisible(true);
+    CheckIn.setDefaultCloseOperation(CheckIn.DISPOSE_ON_CLOSE); 
+    CheckIn_exists=true;
+    return ;
+     }
+   //  if exists just show it
+   CheckIn.setVisible(true);
+
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -121,6 +149,12 @@ public class home extends javax.swing.JFrame {
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+      int a = JOptionPane.showConfirmDialog(null, "Do you realy want to close Application", "Select", JOptionPane.YES_NO_OPTION);
+        if (a == 0)
+            System.exit(0); 
+    }//GEN-LAST:event_jButton6ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -151,6 +185,7 @@ public class home extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            
             public void run() {
                 new home().setVisible(true);
             }

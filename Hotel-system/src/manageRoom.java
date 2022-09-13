@@ -66,12 +66,7 @@ public class manageRoom extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"", null, null, null, null},
-                {"", null, null, null, null},
-                {"", null, null, null, null},
-                {"", null, null, null, null},
-                {"", "", null, null, null},
-                {null, null, null, null, null}
+
             },
             new String [] {
                 "Room Number", "Room Type", "Bed", "Price", "Status"
@@ -146,6 +141,8 @@ public class manageRoom extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
        setVisible(false);
+       setDefaultCloseOperation(EXIT_ON_CLOSE);
+       dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
@@ -165,10 +162,22 @@ public class manageRoom extends javax.swing.JFrame {
         String roomType=(String)jComboBox1.getSelectedItem();
         String bed=(String)jComboBox2.getSelectedItem();
         String price=jTextField2.getText();
-          String  Query="insert into room values('"+roomNo+"','"+roomType+"','"+bed+"','"+price+"','Not Booked')";
-          InsertUpdateDelete.setData(Query, "succesfully Updated");
-          setVisible(false);
-          new manageRoom().setVisible(true);
+        if (roomNo.equals("") || roomType.equals("") ||bed.equals("") || price.equals(""))
+                {
+              JOptionPane.showMessageDialog(null, "Every Field is Required");
+                return ;
+                }
+        try{
+        String  Query="insert into room values('"+roomNo+"','"+roomType+"','"+bed+"','"+price+"','Not Booked')";
+        InsertUpdateDelete.setData(Query, "succesfully Updated");
+        setVisible(false);
+        new manageRoom().setVisible(true);
+        }
+        catch(Exception e){
+        JOptionPane.showMessageDialog(null,e);
+        
+        }
+               
           
     }//GEN-LAST:event_jButton2ActionPerformed
 

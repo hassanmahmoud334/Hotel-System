@@ -33,7 +33,9 @@ public class CustomerCheckIn extends javax.swing.JFrame {
     String roomType;
     String roomNo;
     String price;
-    public void roomDetails(){
+            
+   // to show the avaliable room in room number comboBox
+    public void roomDetails(){      
         jComboBox5.removeAllItems();
         jTextField9.setText("");
         bed=(String)jComboBox2.getSelectedItem();
@@ -256,13 +258,15 @@ public class CustomerCheckIn extends javax.swing.JFrame {
         getContentPane().add(jComboBox5, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 300, 290, -1));
 
         jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/all pages background.png"))); // NOI18N
-        getContentPane().add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, -10, 1780, 640));
+        getContentPane().add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(-30, 0, 1780, 640));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         setVisible(false);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
@@ -294,13 +298,16 @@ public class CustomerCheckIn extends javax.swing.JFrame {
     private void jTextField7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField7ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField7ActionPerformed
-
+    
     private void jComboBox5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox5ActionPerformed
+       
+        // to show the price
+       
         roomNo=(String)jComboBox5.getSelectedItem();
         try{
-        ResultSet rs=Select.getData("select *from room where roomNo='"+roomNo+"'");
+        ResultSet rs=Select.getData("select * from room where roomNo='"+roomNo+"'");
         while (rs.next()){
-            jTextField9.setText(rs.getString(4));
+            jTextField9.setText(rs.getString(4)); //price of the room 
         }
         }
             
