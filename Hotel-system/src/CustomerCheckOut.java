@@ -93,13 +93,13 @@ public class CustomerCheckOut extends javax.swing.JFrame {
         jLabel1.setText("Customer Check Out");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(21, 14, -1, -1));
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/close.png"))); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/exit.png"))); // NOI18N
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1200, 10, -1, -1));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1200, 10, 40, 40));
 
         jLabel2.setFont(new java.awt.Font("Algerian", 0, 15)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 51, 51));
@@ -323,7 +323,7 @@ public class CustomerCheckOut extends javax.swing.JFrame {
         InsertUpdateDelete.setData(Query, "");
         Query = "update room set status = 'Not Booked' where roomNo='" + roomNo + "'";
         InsertUpdateDelete.setData(Query, "");
-        String path = "F:\\Training";
+        String path = "E:\\";
         com.itextpdf.text.Document doc = new com.itextpdf.text.Document();
         try
         {
@@ -357,9 +357,9 @@ public class CustomerCheckOut extends javax.swing.JFrame {
         int a = JOptionPane.showConfirmDialog(null, "Do you want to print Pill ? ", "Select", JOptionPane.YES_NO_OPTION);
         if (a == 0){
             try{
-                if((new File("F:\\Training"+id+".pdf")).exists()){
+                if((new File("E:\\"+id+".pdf")).exists()){
                     
-                    Process p = Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler F:\\Training"+id+".pdf");
+                    Process p = Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler E:\\"+id+".pdf");
                 }else{
                     System.out.println("File is not Exists");
                 }

@@ -12,6 +12,7 @@ public class tabels {
             con = ConnectionProvider.getCon();
             st = con.createStatement();
 //String CreateTable ="  create table users(name varchar(200),email varchar(200),password varchar(50),securityQuestion varchar(500),answer varchar(200),address varchar(200),status varchar(20))";
+st.executeUpdate("DROP TABLE IF EXISTS customer;");   
 st.executeUpdate("DROP TABLE IF EXISTS room;");     
 
 st.executeUpdate(
@@ -25,7 +26,7 @@ st.executeUpdate(
 ");");
 
 
-st.executeUpdate("DROP TABLE IF EXISTS customer;");    
+ 
 
 st.executeUpdate(
 "CREATE TABLE customer (\n" +
