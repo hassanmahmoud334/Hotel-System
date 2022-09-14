@@ -183,17 +183,19 @@ public class CustomerDetailsBill extends javax.swing.JFrame {
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         int index=jTable1.getSelectedRow();
         TableModel model = jTable1.getModel();
-        String id =model.getValueAt(index,0).toString();
-        try{
-                if((new File("E:\\"+id+".pdf")).exists()){
-                    
-                    Process p = Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler E:\\"+id+".pdf");
-                }else{
-                    JOptionPane.showMessageDialog(null, "File is not Exists");
-                }
-            }catch(Exception e){
-                JOptionPane.showMessageDialog(null, e);
-            }
+        int id ;
+        id = Integer.valueOf(model.getValueAt(index,0).toString());
+        project.bill.print_bill(id);
+//        try{
+//                if((new File("E:\\"+id+".pdf")).exists()){
+//                    
+//                    Process p = Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler E:\\"+id+".pdf");
+//                }else{
+//                    JOptionPane.showMessageDialog(null, "File is not Exists");
+//                }
+//            }catch(Exception e){
+//                JOptionPane.showMessageDialog(null, e);
+//            }
         
         
     }//GEN-LAST:event_jTable1MouseClicked

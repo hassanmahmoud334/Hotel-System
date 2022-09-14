@@ -178,6 +178,8 @@ public class ForgetPassword extends javax.swing.JFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         int check = 0;
         String newPassword = jPasswordField1.getText();
+        PasswordAuthentication hasher =new PasswordAuthentication();
+        String Hashed_pass= hasher.hash(newPassword);
         String securityQuestion = (String) jComboBox1.getSelectedItem();
         String answer = jTextField2.getText();
         if (newPassword.equals("") || answer.equals("")) {
@@ -188,7 +190,7 @@ public class ForgetPassword extends javax.swing.JFrame {
             try {
                 if (rs.next()) {
                     check = 1;
-                    InsertUpdateDelete.setData("update users set password = '" + newPassword + "' where email='" + email + "'", "Password Set Successfully");
+                    InsertUpdateDelete.setData("update users set password = '" + Hashed_pass + "' where email='" + email + "'", "Password Updated Successfully");
                     setVisible(false);
                     new ForgetPassword().setVisible(true);
                 }

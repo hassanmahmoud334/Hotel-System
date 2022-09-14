@@ -355,17 +355,9 @@ public class CustomerCheckOut extends javax.swing.JFrame {
         }
         doc.close();
         int a = JOptionPane.showConfirmDialog(null, "Do you want to print Pill ? ", "Select", JOptionPane.YES_NO_OPTION);
-        if (a == 0){
-            try{
-                if((new File("E:\\"+id+".pdf")).exists()){
-                    
-                    Process p = Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler E:\\"+id+".pdf");
-                }else{
-                    System.out.println("File is not Exists");
-                }
-            }catch(Exception e){
-                JOptionPane.showMessageDialog(null, e);
-            }
+        if (a == 0)
+        {       
+            project.bill.print_bill(id);
         }
         setVisible(false);
            new CustomerCheckOut().setVisible(true);

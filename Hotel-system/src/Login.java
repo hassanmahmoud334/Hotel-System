@@ -2,6 +2,7 @@
 import javax.swing.JOptionPane;
 import java.sql.*;
 import project.ConnectionProvider;
+import project.PasswordAuthentication;
 import project.Select;
 
 /*
@@ -133,21 +134,48 @@ public class Login extends javax.swing.JFrame {
             setVisible(false);
             new adminHome().setVisible(true);
         } else {
-            ResultSet rs = Select.getData("select * from users where email='" + email + "' and password = '" + password + "'");
+            PasswordAuthentication hasher =new PasswordAuthentication();
+//            hasher.authenticate(password, email)
+//             String hashed_password=hasher.hash(password);
+            ResultSet rs = Select.getData("select password,status from users where email='" + email + "'");
+            
             try {
                 if (rs.next()) {
-                    check = 1;
-                    if (rs.getString(7).equals("true")) {
+                    
+                    
+                    if ( hasher.authenticate(password, rs.getString(1)) ) {
+                        check = 1;
+                        if (rs.getString(2).equals("true")){
                         setVisible(false);
                         new home().setVisible(true);
-                    } else {
+                        }
+                        else {
                         JOptionPane.showMessageDialog(this, "Wait for Admin Approval");
                     }
+                    } 
 
                 }
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(this, e);
             }
+            
+            
+            
+//            ResultSet rs = Select.getData("select * from users where email='" + email + "' and password = '" + password + "'");
+//            try {
+//                if (rs.next()) {
+//                    check = 1;
+//                    if (rs.getString(7).equals("true")) {
+//                        setVisible(false);
+//                        new home().setVisible(true);
+//                    } else {
+//                        JOptionPane.showMessageDialog(this, "Wait for Admin Approval");
+//                    }
+//
+//                }
+//            } catch (Exception e) {
+//                JOptionPane.showMessageDialog(this, e);
+//            }
         }
         if (check == 0) {
             JOptionPane.showMessageDialog(this, "Incorrect Email or Password");

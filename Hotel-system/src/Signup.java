@@ -1,6 +1,12 @@
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import project.InsertUpdateDelete;
+import project.PasswordAuthentication;
+import project.Select;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -180,14 +186,30 @@ public class Signup extends javax.swing.JFrame {
         String securityQuestion = (String) jComboBox1.getSelectedItem();
         String answer = jTextField3.getText();
         String address = jTextField4.getText();
+        PasswordAuthentication hasher = new PasswordAuthentication();
+        String Hashed_pass = hasher.hash(password);
         if (name.equals("") || email.equals("") || password.equals("") || answer.equals("") || address.equals(""))
             JOptionPane.showMessageDialog(null, "Every Field is Required");
         else {
-            String Query;
-            Query = "insert into users values('" + name + "','" + email + "','" + password + "','" + securityQuestion + "','" + answer + "','" + address + "','false')";
-            InsertUpdateDelete.setData(Query, "Registered Successfully");
-            setVisible(false);
-            new Signup().setVisible(true);
+
+            // check email 
+            ResultSet rs = Select.getData("select * from users where email='" + email + "'");
+//            JOptionPane.showMessageDialog(null, rs.toString());
+            try {
+                if (rs.next()) {
+                    
+                    JOptionPane.showMessageDialog(null, "Email Already Registered");
+
+                } else {
+                    String Query;
+                    Query = "insert into users values('" + name + "','" + email + "','" + Hashed_pass + "','" + securityQuestion + "','" + answer + "','" + address + "','false')";
+                    InsertUpdateDelete.setData(Query, "Registered Successfully");
+                    setVisible(false);
+                    new Login().setVisible(true);
+                }
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(null, ex);
+            }
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
