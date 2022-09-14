@@ -5,7 +5,6 @@ import javax.swing.JOptionPane;
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-
 /**
  *
  * @author TURBO
@@ -35,7 +34,6 @@ public class home extends javax.swing.JFrame {
         jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -89,6 +87,11 @@ public class home extends javax.swing.JFrame {
         jButton5.setForeground(new java.awt.Color(102, 0, 0));
         jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/logout.png"))); // NOI18N
         jButton5.setText("LogOut");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(1050, 20, -1, -1));
 
         jButton6.setFont(new java.awt.Font("Algerian", 1, 14)); // NOI18N
@@ -101,20 +104,20 @@ public class home extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(1220, 20, -1, -1));
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 220, -1, -1));
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/home.png"))); // NOI18N
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -140, 1440, 1050));
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/home.png"))); // NOI18N
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-boolean m_room_exists=false;
-manageRoom m_room;
+/*boolean m_room_exists=false;
+manageRoom m_room;*/
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-  
+        setVisible(false);
+        new manageRoom().setVisible(true);
         // if the window dosnt exist --> create it 
-   if (!m_room_exists){
+        /*if (!m_room_exists){
     m_room = new manageRoom();
     m_room.setVisible(true);
     m_room.setDefaultCloseOperation(m_room.DISPOSE_ON_CLOSE); 
@@ -122,14 +125,15 @@ manageRoom m_room;
     return ;
      }
    //  if exists just show it 
-   m_room.setVisible(true);
+   m_room.setVisible(true);*/
 
     }//GEN-LAST:event_jButton1ActionPerformed
-boolean CheckIn_exists=false;
-CustomerCheckIn CheckIn;
+    /*boolean CheckIn_exists=false;
+CustomerCheckIn CheckIn;*/
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-
-        // if the window dosnt exist --> create it 
+        setVisible(false);
+        new CustomerCheckIn().setVisible(true);
+        /*      // if the window dosnt exist --> create it 
    if (!CheckIn_exists){
     CheckIn = new CustomerCheckIn();
     CheckIn.setVisible(true);
@@ -138,12 +142,15 @@ CustomerCheckIn CheckIn;
     return ;
      }
    //  if exists just show it
-   CheckIn.setVisible(true);
+   
+   CheckIn.setVisible(true);*/
 
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
+        setVisible(false);
+        new CustomerCheckOut().setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -151,10 +158,16 @@ CustomerCheckIn CheckIn;
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-      int a = JOptionPane.showConfirmDialog(null, "Do you realy want to close Application", "Select", JOptionPane.YES_NO_OPTION);
+        int a = JOptionPane.showConfirmDialog(null, "Do you realy want to close Application", "Select", JOptionPane.YES_NO_OPTION);
         if (a == 0)
-            System.exit(0); 
+            System.exit(0);
     }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+
+        setVisible(false);
+        new Login().setVisible(true);
+    }//GEN-LAST:event_jButton5ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -185,7 +198,7 @@ CustomerCheckIn CheckIn;
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
-            
+
             public void run() {
                 new home().setVisible(true);
             }
@@ -200,6 +213,5 @@ CustomerCheckIn CheckIn;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables
 }

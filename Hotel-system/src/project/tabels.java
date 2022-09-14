@@ -29,7 +29,7 @@ st.executeUpdate("DROP TABLE IF EXISTS customer;");
 
 st.executeUpdate(
 "CREATE TABLE customer (\n" +
-"    id INT NOT NULL,\n" +
+"    id INT NOT NULL auto_increment,\n" +
 "    name VARCHAR(60),\n" +
 "    mobileNumber VARCHAR(20),\n" +
 "    nationality VARCHAR(50),\n" +
@@ -42,13 +42,13 @@ st.executeUpdate(
 "    bed VARCHAR(40),\n" +
 "    roomType VARCHAR(200),\n" +
 "    pricePerDay INT(10),\n" +
-"    nunmberofDaysStay INT(10),\n" +
+"    numberofDaysStay INT(10),\n" +
 "    totalAmount VARCHAR(200),\n" +
 "    checkout VARCHAR(50),\n" +
 "    PRIMARY KEY (id),\n" +
 "    CONSTRAINT roomNo FOREIGN KEY (roomNo)\n" +
 "        REFERENCES room (roomNo)\n" +
-");");
+")AUTO_INCREMENT = 1;");
 
 JOptionPane.showMessageDialog(null, "Table Created Successfully");
         } catch (Exception e) {
