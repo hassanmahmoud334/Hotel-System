@@ -195,7 +195,7 @@ public class manageRoom extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
-        ResultSet rs=Select.getData("select *from room");
+        ResultSet rs=Select.getData("select * from room");
         DefaultTableModel model=(DefaultTableModel)jTable1.getModel();
         try
         {

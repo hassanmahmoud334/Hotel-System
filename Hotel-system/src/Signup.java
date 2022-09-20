@@ -202,7 +202,7 @@ public class Signup extends javax.swing.JFrame {
 
                 } else {
                     String Query;
-                    Query = "insert into users values('" + name + "','" + email + "','" + Hashed_pass + "','" + securityQuestion + "','" + answer + "','" + address + "','false')";
+                    Query = "insert into users(name, email, password, securityQuestion, answer, address, status) values('" + name + "','" + email + "','" + Hashed_pass + "','" + securityQuestion + "','" + answer + "','" + address + "','false')";
                     InsertUpdateDelete.setData(Query, "Registered Successfully");
                     setVisible(false);
                     new Login().setVisible(true);
